@@ -10,7 +10,7 @@ import { useCookies } from "react-cookie";
 import { SearchBoardApi } from "../../../apis/searchApis";
 import PopularSearch from "../PolularSearch";
 import { Grid } from "@mui/material";
-import { getImageApi } from "../../../apis/fileApis";
+import { getImageApi, getProfileApi } from "../../../apis/fileApis";
 
 interface SearchMainProps {
   onDetailClick: (boardId: number) => void;
@@ -37,7 +37,7 @@ export default function SearchMain({
       try {
         // Fetch profile images for all boards
         const imagePromises = searchResults.map(async (board) => {
-          const imageUrl = await getImageApi(
+          const imageUrl = await getProfileApi(
             token,
             refreshToken,
             board.boardWriterEmail
@@ -215,9 +215,9 @@ export default function SearchMain({
                                 <Typography
                                   variant="body1"
                                   color="text.secondary"
-                                  sx={{ mt: 1 }}
+                                  sx={{ mt: 1 ,textAlign: "left"}}
                                 >
-                                  {board.boardContent.substr(0, 80)}
+                                  {board.boardContent.slice(0, 80)}
                                 </Typography>
                                 <Typography
                                   variant="body2"

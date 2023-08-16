@@ -31,6 +31,7 @@ import {
   getProfileApi,
   getVideoApi,
 } from "../../../apis/fileApis";
+import DownloadIcon from "@mui/icons-material/Download";
 
 interface BoardDetailProps {
   onMainClick: () => void;
@@ -55,8 +56,8 @@ export default function BoardDetail({
     [key: number]: string | null;
   }>({});
   const { user } = useUserStore();
-  const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');;
+  const token = localStorage.getItem("token");
+  const refreshToken = localStorage.getItem("refreshToken");
   const [refresh, setRefresh] = useState(1);
   const [isInitialMount, setIsInitialMount] = useState(true);
   const [videoUrl, setVideoUrl] = useState<string | undefined>(undefined);
@@ -91,8 +92,8 @@ export default function BoardDetail({
   }, [refresh]); // Run only once on component mount
 
   useEffect(() => {
-    async function fetchMedia(){
-      try{
+    async function fetchMedia() {
+      try {
         if (!boardData) return; // Return early if boardData is not available yet
 
         const videoName = boardData.boardNumber.toString();
@@ -105,7 +106,7 @@ export default function BoardDetail({
         setBoardImages({ [boardData.boardNumber]: imageUrl });
 
         setVideoUrl(videoUrl || undefined);
-      }catch (error) {
+      } catch (error) {
         console.error("게시글 가져오기 실패:", error);
         setProfileImages([null]);
         setBoardImages([null]);
@@ -113,7 +114,7 @@ export default function BoardDetail({
       }
     }
     fetchMedia();
-  },[boardData?.boardContent, boardData?.boardCommentCount, token])
+  }, [boardData?.boardContent, boardData?.boardCommentCount, token]);
 
   const handleRefresh = () => {
     setRefresh(refresh * -1); // refresh 값을 변경하여 컴포넌트를 새로고침
@@ -135,33 +136,36 @@ export default function BoardDetail({
     }
   };
 
-  
-const handleLikeClick = async () => {
-  try {
-    const userLiked = liked;
+  const handleLikeClick = async () => {
+    try {
+      const userLiked = liked;
 
-    if (!userLiked) {
-      const likeUserdata = {
-        boardNumber,
-        userEmail: user.userEmail,
-        likeUserProfile: user.userProfile,
-        likeUserNickname: user.userNickname,
-      };
-      await LikyRegisterApi(token, refreshToken, boardNumber, likeUserdata);
-    } else {
-      await deleteLikyApi(token, refreshToken, boardNumber, user.userNickname);
+      if (!userLiked) {
+        const likeUserdata = {
+          boardNumber,
+          userEmail: user.userEmail,
+          likeUserProfile: user.userProfile,
+          likeUserNickname: user.userNickname,
+        };
+        await LikyRegisterApi(token, refreshToken, boardNumber, likeUserdata);
+      } else {
+        await deleteLikyApi(
+          token,
+          refreshToken,
+          boardNumber,
+          user.userNickname
+        );
+      }
+
+      setLiked(!userLiked); // 좋아요 상태를 토글
+      handleRefresh();
+    } catch (error) {
+      console.error("좋아요 처리 실패:", error);
     }
-
-    setLiked(!userLiked); // 좋아요 상태를 토글
-    handleRefresh();
-  } catch (error) {
-    console.error("좋아요 처리 실패:", error);
-  }
-};
+  };
 
   const handleDownloadClick = async (fileName: string) => {
     try {
-
       const response = await fileDownloadApi(token, refreshToken, fileName);
 
       const contentType = response.type;
@@ -207,7 +211,7 @@ const handleLikeClick = async () => {
 
   const defaultImage = "default-image.png";
 
-  const contentLines = boardContent.split('\n').map((line, index) => (
+  const contentLines = boardContent.split("\n").map((line, index) => (
     <Typography
       variant="body2"
       key={index}
@@ -222,9 +226,7 @@ const handleLikeClick = async () => {
 
   return (
     <>
-      <Card 
-      elevation={0}
-      sx={{backgroundColor:"#FAFAFA"}}>
+      <Card elevation={0} sx={{ backgroundColor: "#FAFAFA" }}>
         <Box display="flex" justifyContent="center" marginTop="70px">
           <Box sx={{ maxWidth: 900, width: "100%" }}>
             <Card>
@@ -262,9 +264,7 @@ const handleLikeClick = async () => {
                     </Typography>
                   </Box>
                 </Box>
-                <Box>
-                  {contentLines}
-                </Box>
+                <Box>{contentLines}</Box>
                 <Box my={2}>
                   {/* 게시물 이미지를 보여줄 경우 */}
                   {boardImage && (
@@ -296,9 +296,8 @@ const handleLikeClick = async () => {
                   )}
                   {/* 게시물 파일을 다운로드 링크로 보여줄 경우 */}
                   {boardFile && (
-                    <Typography
-                      variant="body1"
-                      color="primary"
+                    <IconButton
+                      color="secondary"
                       sx={{
                         cursor: "pointer",
                         "&:hover": {
@@ -307,8 +306,8 @@ const handleLikeClick = async () => {
                       }}
                       onClick={() => handleDownloadClick(boardFile)}
                     >
-                      게시물 파일 다운로드
-                    </Typography>
+                      <DownloadIcon /> 
+                    </IconButton>
                   )}
                 </Box>
                 <Typography variant="body2" gutterBottom>
