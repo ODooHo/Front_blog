@@ -1,6 +1,5 @@
 import axios, { AxiosError } from "axios";
 import { getAccessTokenApi } from "./authApis";
-import { useCookies } from "react-cookie";
 
 
 

@@ -21,6 +21,7 @@ import {
   LikyApi,
   LikyRegisterApi,
   deleteLikyApi,
+  getLikyCountApi,
 } from "../../../apis/likyApis";
 
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
@@ -60,6 +61,7 @@ export default function BoardDetail({
   const refreshToken = localStorage.getItem("refreshToken");
   const [refresh, setRefresh] = useState(1);
   const [isInitialMount, setIsInitialMount] = useState(true);
+  const [likyCount, setLikyCount] = useState<number | undefined>(undefined);
   const [videoUrl, setVideoUrl] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -82,6 +84,10 @@ export default function BoardDetail({
           (like: Liky) => like.userEmail === user?.userEmail
         );
         setLiked(userLiked);
+
+        const likyCount = await getLikyCountApi(token,refreshToken,boardNumber);
+        setLikyCount(likyCount.data)
+
       } catch (error) {
         console.error("게시글 가져오기 실패:", error);
         setBoardData(undefined);
@@ -148,6 +154,7 @@ export default function BoardDetail({
           likeUserNickname: user.userNickname,
         };
         await LikyRegisterApi(token, refreshToken, boardNumber, likeUserdata);
+        console.log(likyCount)
       } else {
         await deleteLikyApi(
           token,

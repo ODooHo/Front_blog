@@ -26,8 +26,8 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
     [key: string]: string | null;
   }>({});
 
-  const token = localStorage.getItem('token');;
-  const refreshToken = localStorage.getItem('refreshToken');;
+  const token = localStorage.getItem("token");
+  const refreshToken = localStorage.getItem("refreshToken");
 
   // 페이지가 변경될 때마다 API를 호출하도록 useEffect 사용
   useEffect(() => {
@@ -47,7 +47,6 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
   useEffect(() => {
     async function fetchCommentImages() {
       try {
-
         // Fetch profile images for all comments
         const imagePromises = comments.map(async (comment) => {
           const imageUrl = await getProfileApi(
@@ -99,7 +98,6 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
       alert("댓글 작성에 실패했습니다.");
       return;
     }
-    alert("댓글 작성에 성공했습니다!");
 
     handleRefresh();
   };
@@ -138,7 +136,7 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
     editedContent: string
   ) => {
     try {
-      const token = localStorage.getItem('token');;
+      const token = localStorage.getItem("token");
       const data = {
         commentContent: editedContent,
         commentWriteDate: new Date().toISOString(),
@@ -198,7 +196,10 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
             variant="contained"
             color="primary"
             sx={{ marginBottom: "50px" }}
-            onClick={CommentRegisterHandler}
+            onClick={() => {
+              CommentRegisterHandler();
+              setCommentContent("");
+            }}
           >
             댓글 작성
           </Button>
@@ -231,9 +232,7 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
               mr={1} // 이미지와 닉네임 사이의 간격을 설정합니다.
             >
               <img
-                src={
-                  profileImages[comment.commentId] || defaultImage
-                }
+                src={profileImages[comment.commentId] || defaultImage}
                 width="100%"
                 height="100%"
               />
