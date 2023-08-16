@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const defaultUrl = 'http://localhost:8080'
+const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 

@@ -18,6 +18,15 @@ export default function SignUp(props: Props) {
   const [userPhoneNumber, setUserPhoneNumber] = useState<string>("");
   const [userAddress, setUserAddress] = useState<string>("");
   const [userAddressDetail, setUserAddressDetail] = useState<string>("");
+  const [errorMessages, setErrorMessages] = useState<{
+    userEmail?: string;
+    userPassword?: string;
+    userPasswordCheck?: string;
+    userNickname?: string;
+    userPhoneNumber?: string;
+    userAddress?: string;
+    userAddressDetail?: string;
+  }>({});
 
   const { setAuthView } = props;
 
@@ -31,6 +40,55 @@ export default function SignUp(props: Props) {
       userAddress,
       userAddressDetail,
     };
+    setErrorMessages({});
+
+    let isValid = true;
+    const newErrorMessages: typeof errorMessages = {};
+
+    if (!userEmail) {
+      newErrorMessages.userEmail = "이메일을 입력하세요.";
+      isValid = false;
+    }
+
+    if (!userPassword) {
+      newErrorMessages.userPassword = "비밀번호를 입력하세요.";
+      isValid = false;
+    }
+
+    if (!userPasswordCheck) {
+      newErrorMessages.userPasswordCheck = "비밀번호 확인을 입력하세요.";
+      isValid = false;
+    } else if (userPassword !== userPasswordCheck) {
+      console.log(userPassword,userPasswordCheck)
+      newErrorMessages.userPasswordCheck = "비밀번호가 일치하지 않습니다.";
+      isValid = false;
+    }
+
+    if (!userNickname) {
+      newErrorMessages.userNickname = "닉네임을 입력하세요.";
+      isValid = false;
+    }
+
+    if (!userPhoneNumber) {
+      newErrorMessages.userPhoneNumber= "휴대폰 번호를 입력하세요.";
+      isValid = false;
+    }
+
+    if (!userAddress) {
+      newErrorMessages.userAddress = "주소를 입력하세요.";
+      isValid = false;
+    }
+
+    if (!userAddressDetail) {
+      newErrorMessages.userAddressDetail = "상세주소를 입력하세요.";
+      isValid = false;
+    }
+
+
+    if (!isValid) {
+      setErrorMessages(newErrorMessages);
+      return;
+    }
 
     const signUpResponse = await signUpApi(data);
     if (!signUpResponse) {
@@ -56,6 +114,8 @@ export default function SignUp(props: Props) {
           type="email"
           variant="standard"
           onChange={(e) => setUserEmail(e.target.value)}
+          error={Boolean(errorMessages.userEmail)}
+          helperText={errorMessages.userEmail}
         />
         <TextField
           fullWidth
@@ -63,6 +123,8 @@ export default function SignUp(props: Props) {
           type="password"
           variant="standard"
           onChange={(e) => setUserPassword(e.target.value)}
+          error={Boolean(errorMessages.userPassword)}
+          helperText={errorMessages.userPassword}
         />
         <TextField
           fullWidth
@@ -70,30 +132,40 @@ export default function SignUp(props: Props) {
           type="password"
           variant="standard"
           onChange={(e) => setUserPasswordCheck(e.target.value)}
+          error={Boolean(errorMessages.userPasswordCheck)}
+          helperText={errorMessages.userPasswordCheck}
         />
         <TextField
           fullWidth
           label="닉네임"
           variant="standard"
           onChange={(e) => setUserNickname(e.target.value)}
+          error={Boolean(errorMessages.userNickname)}
+          helperText={errorMessages.userNickname}
         />
         <TextField
           fullWidth
           label="휴대폰 번호"
           variant="standard"
           onChange={(e) => setUserPhoneNumber(e.target.value)}
+          error={Boolean(errorMessages.userPhoneNumber)}
+          helperText={errorMessages.userPhoneNumber}
         />
         <TextField
           fullWidth
           label="주소"
           variant="standard"
           onChange={(e) => setUserAddress(e.target.value)}
+          error={Boolean(errorMessages.userAddress)}
+          helperText={errorMessages.userAddress}
         />
         <TextField
           fullWidth
           label="상세 주소"
           variant="standard"
           onChange={(e) => setUserAddressDetail(e.target.value)}
+          error={Boolean(errorMessages.userAddressDetail)}
+          helperText={errorMessages.userAddressDetail}
         />
       </Box>
       <Box component="div">

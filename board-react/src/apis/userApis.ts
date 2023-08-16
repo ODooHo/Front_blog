@@ -3,7 +3,7 @@ import { getAccessTokenApi } from "./authApis";
 
 //403 -> 토큰 만료시 에러, 500 -> 토큰 만료시 userEntity 찾지 못하는 에러 
 
-//const defaultUrl = 'http://localhost:8080'
+const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const MyPageApi = async (token: string | null , refreshToken: string | null) => {

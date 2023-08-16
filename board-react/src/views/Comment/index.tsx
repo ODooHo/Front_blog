@@ -99,6 +99,8 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
       return;
     }
 
+    setCommentContent(""); // 댓글 등록에 성공하면 입력한 내용을 초기화
+
     handleRefresh();
   };
 
@@ -119,7 +121,6 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
       );
       console.log(response);
       if (response) {
-        alert("댓글이 삭제되었습니다.");
         setComments((prevComments) =>
           prevComments.filter((comment) => comment.commentId !== commentId)
         );
@@ -181,6 +182,8 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
           variant="outlined"
           fullWidth
           onChange={(e) => setCommentContent(e.target.value)}
+          defaultValue={commentContent}
+          value={commentContent}
         />
 
         <Box
@@ -198,7 +201,6 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
             sx={{ marginBottom: "50px" }}
             onClick={() => {
               CommentRegisterHandler();
-              setCommentContent("");
             }}
           >
             댓글 작성
@@ -246,7 +248,6 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
                 <Typography
                   variant="body1"
                   gutterBottom
-                  marginTop={"20px"}
                   marginBottom="2px"
                 >
                   {comment.commentUserNickname}

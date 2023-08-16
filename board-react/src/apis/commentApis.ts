@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { getAccessTokenApi } from "./authApis";
 
-//const defaultUrl = 'http://localhost:4000'
+const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const CommentRegisterApi = async (token: string | null, refreshToken: string | null, index: number, data: any,) => {
