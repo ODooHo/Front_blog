@@ -1,8 +1,8 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Comment } from "/Users/oduho/Desktop/Clone_SpringBoot-react-aws_Blog/Board/board-react/src/interfaces";
 import { useCookies } from "react-cookie";
 import { useUserStore } from "../../stores";
+import { Comment } from "../../interfaces";
 import {
   CommentListApi,
   CommentRegisterApi,
