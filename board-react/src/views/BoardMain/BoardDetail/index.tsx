@@ -33,6 +33,7 @@ import {
   getVideoApi,
 } from "../../../apis/fileApis";
 import DownloadIcon from "@mui/icons-material/Download";
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 interface BoardDetailProps {
   onMainClick: () => void;
@@ -85,9 +86,12 @@ export default function BoardDetail({
         );
         setLiked(userLiked);
 
-        const likyCount = await getLikyCountApi(token,refreshToken,boardNumber);
-        setLikyCount(likyCount.data)
-
+        const likyCount = await getLikyCountApi(
+          token,
+          refreshToken,
+          boardNumber
+        );
+        setLikyCount(likyCount.data);
       } catch (error) {
         console.error("게시글 가져오기 실패:", error);
         setBoardData(undefined);
@@ -154,7 +158,7 @@ export default function BoardDetail({
           likeUserNickname: user.userNickname,
         };
         await LikyRegisterApi(token, refreshToken, boardNumber, likeUserdata);
-        console.log(likyCount)
+        console.log(likyCount);
       } else {
         await deleteLikyApi(
           token,
@@ -237,6 +241,13 @@ export default function BoardDetail({
         <Box display="flex" justifyContent="center" marginTop="70px">
           <Box sx={{ maxWidth: 900, width: "100%" }}>
             <Card>
+              <IconButton
+                color="inherit"
+                sx={{ backgroundColor: "#ffffff", color: "#000000"}}
+                onClick={onMainClick}
+              >
+                <NavigateBeforeIcon sx={{fontSize : "2rem"}}/>
+              </IconButton>
               <CardContent>
                 <Box textAlign="center">
                   <Typography variant="h4" gutterBottom>
@@ -313,7 +324,7 @@ export default function BoardDetail({
                       }}
                       onClick={() => handleDownloadClick(boardFile)}
                     >
-                      <DownloadIcon /> 
+                      <DownloadIcon />
                     </IconButton>
                   )}
                 </Box>
@@ -387,14 +398,6 @@ export default function BoardDetail({
             margin: "10px auto",
           }}
         >
-          <Button
-            variant="contained"
-            color="inherit"
-            sx={{ backgroundColor: "#ffffff", color: "#000000" }}
-            onClick={onMainClick}
-          >
-            이전
-          </Button>
         </Box>
       </Card>
     </>
