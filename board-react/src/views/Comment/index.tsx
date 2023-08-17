@@ -9,7 +9,7 @@ import {
   deleteCommentApi,
   editCommentApi,
 } from "../../apis/commentApis";
-import { getImageApi, getProfileApi } from "../../apis/fileApis";
+import {getProfileApi } from "../../apis/fileApis";
 
 interface CommentMainProps {
   boardNumber: number;
@@ -52,7 +52,7 @@ export default function CommentMain({ boardNumber }: CommentMainProps) {
           const imageUrl = await getProfileApi(
             token,
             refreshToken,
-            comment.userEmail
+            comment.commentUserProfile
           );
           return { [comment.commentId]: imageUrl };
         });

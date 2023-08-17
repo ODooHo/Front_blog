@@ -10,7 +10,7 @@ import { useCookies } from "react-cookie";
 import { SearchBoardApi } from "../../../apis/searchApis";
 import PopularSearch from "../PolularSearch";
 import { Grid } from "@mui/material";
-import { getImageApi, getProfileApi } from "../../../apis/fileApis";
+import { getProfileApi } from "../../../apis/fileApis";
 
 interface SearchMainProps {
   onDetailClick: (boardId: number) => void;
@@ -64,7 +64,6 @@ export default function SearchMain({
 
   const handleSearch = async () => {
     const token = localStorage.getItem('token');;
-    const count = 1;
     const data = {
       popularTerm: searchQuery,
     };
@@ -104,6 +103,7 @@ export default function SearchMain({
       setSearchResults([]);
     }
   };
+  const defaultImage = "default-image.png"
 
   return (
     <>
@@ -176,7 +176,7 @@ export default function SearchMain({
                                       <img
                                         src={
                                           profileImages[board.boardNumber] ||
-                                          "default-image-url.jpg"
+                                          defaultImage
                                         }
                                         width="100%"
                                         height="100%"

@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 import { Board, Liky } from "../../../interfaces";
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
@@ -49,7 +47,6 @@ export default function BoardDetail({
   boardNumber,
 }: BoardDetailProps) {
   const [boardData, setBoardData] = useState<Board | undefined>(undefined);
-  const [cookies, setCookies] = useCookies();
   const [liked, setLiked] = useState<boolean>(false);
   const [profileImages, setProfileImages] = useState<{
     [key: number]: string | null;
@@ -106,9 +103,8 @@ export default function BoardDetail({
       try {
         if (!boardData) return; // Return early if boardData is not available yet
 
-        const videoName = boardData.boardNumber.toString();
         const [profileUrl, imageUrl, videoUrl] = await Promise.all([
-          getProfileApi(token, refreshToken, boardData.boardWriterEmail),
+          getProfileApi(token, refreshToken, boardData.boardWriterProfile),
           getImageApi(token, refreshToken, boardImage),
           getVideoApi(token, refreshToken, boardVideo),
         ]);

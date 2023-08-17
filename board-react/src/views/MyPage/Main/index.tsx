@@ -3,7 +3,7 @@ import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import { Board } from "../../../interfaces";
 import { useCookies } from "react-cookie";
 import { MyPageApi } from "../../../apis/userApis";
-import { getImageApi, getProfileApi } from "../../../apis/fileApis";
+import { getProfileApi } from "../../../apis/fileApis";
 import EditIcon from "@mui/icons-material/Edit";
 import PersonIcon from "@mui/icons-material/Person";
 // 인터페이스를 정의합니다.
