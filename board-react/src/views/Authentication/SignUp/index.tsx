@@ -39,6 +39,7 @@ export default function SignUp(props: Props) {
       userPhoneNumber,
       userAddress,
       userAddressDetail,
+      userProfile: "default.jpg",
     };
     setErrorMessages({});
 
@@ -59,7 +60,6 @@ export default function SignUp(props: Props) {
       newErrorMessages.userPasswordCheck = "비밀번호 확인을 입력하세요.";
       isValid = false;
     } else if (userPassword !== userPasswordCheck) {
-      console.log(userPassword,userPasswordCheck)
       newErrorMessages.userPasswordCheck = "비밀번호가 일치하지 않습니다.";
       isValid = false;
     }
@@ -94,6 +94,18 @@ export default function SignUp(props: Props) {
     if (!signUpResponse) {
       alert("회원가입에 실패했습니다.");
       return;
+    }
+    if (signUpResponse.message === "Email already exist!"){
+      newErrorMessages.userEmail = "이미 존재하는 이메일입니다."
+      isValid = false;
+    }else if(signUpResponse.message === "Nickname already exist!"){
+      newErrorMessages.userNickname = "이미 존재하는 닉네임입니다."
+      isValid = false;
+    }
+
+    if(!isValid) {
+      setErrorMessages(newErrorMessages);
+      return;      
     }
 
     alert("회원가입에 성공했습니다.");

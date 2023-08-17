@@ -44,7 +44,7 @@ export default function BoardTop3({ onDetailClick }: BoardTop3Props) {
           const imageUrl = await getProfileApi(
             token,
             refreshToken,
-            board.boardWriterEmail
+            board.boardWriterProfile
           );
           return { [board.boardNumber]: imageUrl };
         });

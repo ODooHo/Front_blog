@@ -60,7 +60,7 @@ export const profileUploadApi = async (token: string | null, refreshToken: strin
 
 
 export const getProfileApi = async (token: string | null, refreshToken: string | null, imageName: string | number) => {
-    const url = `${defaultUrl}/api/images/${imageName}.jpg/profile`;
+    const url = `${defaultUrl}/api/images/${imageName}/profile`;
     
     try {
         const response = await axios.get(url, {

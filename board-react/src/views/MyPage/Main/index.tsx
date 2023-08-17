@@ -50,7 +50,7 @@ export default function Main({
           const profileImageUrl = await getProfileApi(
             token,
             refreshToken,
-            Email
+            Profile,
           );
           setProfileImageUrl(profileImageUrl);
         } else {

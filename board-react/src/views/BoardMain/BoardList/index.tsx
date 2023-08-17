@@ -55,7 +55,7 @@ export default function BoardList({ onDetailClick }: BoardListProps) {
           const imageUrl = await getProfileApi(
             token,
             refreshToken,
-            board.boardWriterEmail
+            board.boardWriterProfile
           );
           return { [board.boardNumber]: imageUrl };
         });

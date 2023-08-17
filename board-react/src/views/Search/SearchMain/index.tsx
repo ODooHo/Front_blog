@@ -40,7 +40,7 @@ export default function SearchMain({
           const imageUrl = await getProfileApi(
             token,
             refreshToken,
-            board.boardWriterEmail
+            board.boardWriterProfile,
           );
           return { [board.boardNumber]: imageUrl };
         });
