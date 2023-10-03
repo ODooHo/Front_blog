@@ -7,7 +7,7 @@ const defaultUrl = 'http://15.165.24.146:8080'
 
 
 export const profileUploadApi = async (token: string | null, refreshToken: string | null, data: any) => {
-    const url = `${defaultUrl}/api/upload/profile`;
+    const url = `${testUrl}/api/upload/profile`;
     
     try {
         const response = await axios.post(url, data, {
@@ -60,7 +60,7 @@ export const profileUploadApi = async (token: string | null, refreshToken: strin
 
 
 export const getProfileApi = async (token: string | null, refreshToken: string | null, imageName: string | number) => {
-    const url = `${defaultUrl}/api/images/${imageName}/profile`;
+    const url = `${testUrl}/api/images/${imageName}/profile`;
     
     try {
         const response = await axios.get(url, {
@@ -112,7 +112,7 @@ export const getProfileApi = async (token: string | null, refreshToken: string |
 };
 
 export const getImageApi = async (token: string | null, refreshToken: string | null, imageName: string | number) => {
-    const url = `${defaultUrl}/api/images/${imageName}`;
+    const url = `${testUrl}/api/images/${imageName}`;
     
     try {
         const response = await axios.get(url, {
@@ -165,7 +165,7 @@ export const getImageApi = async (token: string | null, refreshToken: string | n
 
 
 export const getVideoApi = async (token: string | null, refreshToken: string | null, videoName: string | number) => {
-    const url = `${defaultUrl}/api/videos/${videoName}`;
+    const url = `${testUrl}/api/videos/${videoName}`;
     
     try {
         const response = await axios.get(url, {
@@ -216,7 +216,7 @@ export const getVideoApi = async (token: string | null, refreshToken: string | n
 };
 
 export const fileDownloadApi = async (token: string | null, refreshToken: string | null, fileName: string) => {
-    const url = `${defaultUrl}/api/files/${fileName}`
+    const url = `${testUrl}/api/files/${fileName}`
     
 
     try {

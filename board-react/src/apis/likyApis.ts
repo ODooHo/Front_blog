@@ -7,7 +7,7 @@ const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const LikyApi = async (token: string | null, refreshToken : string| null ,index: number) => {
-    const url = `${defaultUrl}/api/board/${index}/liky/get`
+    const url = `${testUrl}/api/board/${index}/liky/get`
     
     try {
         const response = await axios.get(url, {
@@ -53,7 +53,7 @@ export const LikyApi = async (token: string | null, refreshToken : string| null 
 };
 
 export const getLikyCountApi = async (token: string | null, refreshToken : string| null , index: number) => {
-    const url = `${defaultUrl}/api/board/${index}/liky/get/count`
+    const url = `${testUrl}/api/board/${index}/liky/get/count`
     
     try {
         const response = await axios.get(url, {
@@ -99,7 +99,7 @@ export const getLikyCountApi = async (token: string | null, refreshToken : strin
 };
 
 export const LikyRegisterApi = async ( token: string | null, refreshToken : string| null , index: number , data: any,) => { 
-    const url = `${defaultUrl}/api/board/${index}/liky/add`
+    const url = `${testUrl}/api/board/${index}/liky/add`
     
     try {
         const response = await axios.post(url, data, {
@@ -145,7 +145,7 @@ export const LikyRegisterApi = async ( token: string | null, refreshToken : stri
 }
 
 export const deleteLikyApi = async (token: string | null, refreshToken : string| null , boardNumber: number , likeUserNickname : string) => {
-    const url = `${defaultUrl}/api/board/${boardNumber}/liky/delete/${likeUserNickname}`
+    const url = `${testUrl}/api/board/${boardNumber}/liky/delete/${likeUserNickname}`
     
     try {
         const response = await axios.get(url, {

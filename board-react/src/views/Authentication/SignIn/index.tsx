@@ -34,8 +34,8 @@ export default function SignIn(props: Props) {
     };
 
     const signInResponse = await signInApi(data);
-
-    if (!signInResponse) {
+    console.log(signInResponse)
+    if (signInResponse.data == null) {
       setLoginError(true);
       return;
     }

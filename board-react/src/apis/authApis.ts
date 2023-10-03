@@ -5,7 +5,7 @@ const defaultUrl = 'http://15.165.24.146:8080'
 
 
 export const signInApi = async (data: any) => {
-    const url = `${defaultUrl}/api/auth/signIn`
+    const url = `${testUrl}/api/auth/signIn`
     const response = await axios.post(url, data).catch((error) => null);
     if (!response) {
         return null;
@@ -16,7 +16,7 @@ export const signInApi = async (data: any) => {
 }
 
 export const signUpApi = async (data: any) => {
-    const url = `${defaultUrl}/api/auth/signUp`
+    const url = `${testUrl}/api/auth/signUp`
     const response = await axios.post(url, data).catch((error) => null);
     if (!response) {
         return null;
@@ -28,7 +28,7 @@ export const signUpApi = async (data: any) => {
 
 
 export const getAccessTokenApi = async (data: any) => {
-    const url = `${defaultUrl}/api/auth/getAccess`
+    const url = `${testUrl}/api/auth/getAccess`
     const response = await axios.post(url, data, {
         headers: {
             Authorization: `Bearer ${data}`,
