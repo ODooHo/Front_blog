@@ -5,7 +5,7 @@ const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const BoardApi = async (token: string | null, refreshToken: string | null, index: number) => {
-    const url = `${testUrl}/api/board/${index}`
+    const url = `${defaultUrl}/api/board/${index}`
     try {
         const response = await axios.get(url, {
             headers: {
@@ -54,7 +54,7 @@ export const BoardApi = async (token: string | null, refreshToken: string | null
 };
 
 export const BoardIncreaseApi = async (token: string | null, refreshToken: string | null, index: number) => {
-    const url = `${testUrl}/api/board/${index}`
+    const url = `${defaultUrl}/api/board/${index}`
 
     const data = 1;
     try {
@@ -109,7 +109,7 @@ export const BoardIncreaseApi = async (token: string | null, refreshToken: strin
 
 
 export const BoardTop3Api = async (token: string | null, refreshToken: string | null) => {
-    const url = `${testUrl}/api/board/top3`
+    const url = `${defaultUrl}/api/board/top3`
     try {
         const response = await axios.get(url, {
             headers: {
@@ -157,7 +157,7 @@ export const BoardTop3Api = async (token: string | null, refreshToken: string | 
 };
 
 export const BoardListApi = async (token: string | null, refreshToken: string | null) => {
-    const url = `${testUrl}/api/board/list`
+    const url = `${defaultUrl}/api/board/list`
     try {
         const response = await axios.get(url, {
             headers: {
@@ -205,7 +205,7 @@ export const BoardListApi = async (token: string | null, refreshToken: string | 
 };
 
 export const BoardRegisterApi = async (token: string | null, refreshToken: string | null, data: any,) => {
-    const url = `${testUrl}/api/board/register`;
+    const url = `${defaultUrl}/api/board/register`;
     try {
         const response = await axios.post(url, data, {
             headers: {
@@ -255,7 +255,7 @@ export const BoardRegisterApi = async (token: string | null, refreshToken: strin
 }
 
 export const BoardDeleteApi = async (token: string | null, refreshToken: string | null, index: number) => {
-    const url = `${testUrl}/api/board/${index}/delete`
+    const url = `${defaultUrl}/api/board/${index}/delete`
     try {
         const response = await axios.get(url, {
             headers: {
@@ -302,7 +302,7 @@ export const BoardDeleteApi = async (token: string | null, refreshToken: string 
 };
 
 export const boardEditApi = async (token: string | null, refreshToken: string | null, boardNumber: number, data: any) => {
-    const url = `${testUrl}/api/board/${boardNumber}/edit`
+    const url = `${defaultUrl}/api/board/${boardNumber}/edit`
     try {
         const response = await axios.patch(url, data, {
             headers: {

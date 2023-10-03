@@ -5,7 +5,7 @@ const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const CommentRegisterApi = async (token: string | null, refreshToken: string | null, index: number, data: any,) => {
-    const url = `${testUrl}/api/board/${index}/comment/register`
+    const url = `${defaultUrl}/api/board/${index}/comment/register`
     
     try {
         const response = await axios.post(url, data, {
@@ -52,7 +52,7 @@ export const CommentRegisterApi = async (token: string | null, refreshToken: str
 };
 
 export const CommentListApi = async (token: string | null, refreshToken: string | null, index: number) => {
-    const url = `${testUrl}/api/board/${index}/comment/list`;
+    const url = `${defaultUrl}/api/board/${index}/comment/list`;
     
     try {
         const response = await axios.get(url, {
@@ -101,7 +101,7 @@ export const CommentListApi = async (token: string | null, refreshToken: string 
 };
 
 export const deleteCommentApi = async (token: string | null, refreshToken: string | null, boardNumber: number, commentId: number) => {
-    const url = `${testUrl}/api/board/${boardNumber}/comment/${commentId}/delete`
+    const url = `${defaultUrl}/api/board/${boardNumber}/comment/${commentId}/delete`
     
     try {
         const response = await axios.get(url, {
@@ -150,7 +150,7 @@ export const deleteCommentApi = async (token: string | null, refreshToken: strin
 };
 
 export const editCommentApi = async (token: string | null, refreshToken: string | null, boardNumber: number, commentId: number, data: any) => {
-    const url = `${testUrl}/api/board/${boardNumber}/comment/${commentId}/edit`
+    const url = `${defaultUrl}/api/board/${boardNumber}/comment/${commentId}/edit`
     
 
     try {

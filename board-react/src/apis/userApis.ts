@@ -7,7 +7,7 @@ const testUrl = 'http://localhost:8080'
 const defaultUrl = 'http://15.165.24.146:8080'
 
 export const MyPageApi = async (token: string | null , refreshToken: string | null) => {
-    const url = `${testUrl}/api/user/myPage`
+    const url = `${defaultUrl}/api/user/myPage`
     try {
         const response = await axios.get(url, {
             headers: {
@@ -52,7 +52,7 @@ export const MyPageApi = async (token: string | null , refreshToken: string | nu
 };
 
 export const PatchUserApi = async (token: string | null , refreshToken: string | null ,data: any ) => {
-    const url = `${testUrl}/api/user/edit`
+    const url = `${defaultUrl}/api/user/edit`
     try{
 
     const response = await axios.patch(url, data, {
